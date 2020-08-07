@@ -2,14 +2,18 @@ version: "3"
 
 services:
     db:
-        image: postgres
+        image: mdillon/postgis
         environment: 
             - POSTGRES_DB=postgres
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=postgres
+        ports: 
+            - 5432:5432
+        restart: always
+            
     web:
         build: .
-        command: python src/occurrence_project/manage.py runserver 0.0.0.0:8000
+        command: bash -c "python src/occurrence_project/manage.py makemigrations && python src/occurrence_project/manage.py migrate && python src/occurrence_project/manage.py runserver 0.0.0.0:8000"
         volumes:
             - .:/code
         ports:

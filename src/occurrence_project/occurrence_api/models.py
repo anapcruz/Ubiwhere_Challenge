@@ -18,10 +18,10 @@ class Occurrence(models.Model):
 
     author = models.CharField(max_length=100)
     #author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    location = models.CharField(max_length=50)
+    address = models.PointField(null=True, blank=True)
     date_pub = models.DateTimeField(auto_now_add=True, verbose_name="date published")
     date_upd = models.DateField(auto_now=True, verbose_name="date updated")
-    status = models.CharField(max_length=100, default='por_validar')
+    status = models.CharField(max_length=100, default='not_validated')
     description = models.TextField(max_length=200, null=False, blank=False)
 
 
@@ -32,6 +32,3 @@ class Occurrence(models.Model):
 
     def __str__(self):
         return self.author
-    
-    def ola (self):
-        return "ola"
