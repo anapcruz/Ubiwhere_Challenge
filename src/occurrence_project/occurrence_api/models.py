@@ -1,4 +1,4 @@
-from django.db import models
+from django.contrib.gis.db import models
 
 #class User(models.Model):
 #    name = models.CharField(max_length=255)
@@ -17,8 +17,8 @@ class Occurrence(models.Model):
     )
 
     author = models.CharField(max_length=100)
-    #author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    address = models.PointField(null=True, blank=True)
+    address = models.CharField(max_length=255)
+    location = models.GeometryField()
     date_pub = models.DateTimeField(auto_now_add=True, verbose_name="date published")
     date_upd = models.DateField(auto_now=True, verbose_name="date updated")
     status = models.CharField(max_length=100, default='not_validated')

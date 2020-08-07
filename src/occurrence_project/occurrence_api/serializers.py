@@ -5,9 +5,10 @@ class OccurrenceSerializer(serializers.ModelSerializer):
     #status = serializers.HiddenField(default='por_validar')
     class Meta:
         model = Occurrence
-        fields = ('id', 'author', 'location', 'status','date_pub', 'date_upd','description', 'category')
+        fields = ('id', 'author', 'address', 'location', 'status','date_pub', 'date_upd','description', 'category')
 
         extra_kwargs = {
-            'status': {'read_only': True}
+            'status': {'read_only': True},
+            'location': {'read_only': True}
         }
 

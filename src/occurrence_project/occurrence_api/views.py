@@ -11,11 +11,11 @@ from . import serializers
 
 class OccurrenceFiler(filters.FilterSet):
     author = filters.CharFilter(lookup_expr='icontains')
-    location = filters.CharFilter(lookup_expr='icontains')
+    address = filters.CharFilter(lookup_expr='icontains')
 
     class Meta:
         model = Occurrence
-        fields = ('author', 'category', 'location')
+        fields = ('author', 'category', 'address')
 
 
 
@@ -46,3 +46,5 @@ class ApiOccurrenceView(ListAPIView):
     serializer_class = serializers.OccurrenceSerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = OccurrenceFiler
+
+    
